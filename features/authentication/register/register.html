@@ -1,0 +1,30 @@
+<div class="register-container">
+    <h1>Cadastrar Novo Usuário</h1>
+    
+    <div id="registerAlert"></div>
+    
+    <form id="registerForm" novalidate>
+        <div class="mb-3">
+            <label for="regUsername" class="form-label">Usuário</label>
+            <input type="text" class="form-control" id="regUsername" required minlength="3">
+            <div class="invalid-feedback">O usuário deve ter pelo menos 3 caracteres.</div>
+        </div>
+        <div class="mb-3">
+            <label for="regEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="regEmail" required>
+            <div class="invalid-feedback">Por favor, insira um email válido.</div>
+        </div>
+        <div class="mb-3">
+            <label for="regPassword" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="regPassword" required minlength="6">
+            <div class="invalid-feedback">A senha deve ter pelo menos 6 caracteres.</div>
+        </div>
+        <div class="mb-3">
+            <label for="regConfirmPassword" class="form-label">Confirmar Senha</label>
+            <input type="password" class="form-control" id="regConfirmPassword" required>
+            <div class="invalid-feedback">As senhas não coincidem.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+<p><a href="#login">Já tem conta? Faça login</a></p>

@@ -1,0 +1,20 @@
+/* Contact CSS */
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contact-container h1 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.contact-container .lead {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.contact-container textarea {
+    resize: vertical;
+}

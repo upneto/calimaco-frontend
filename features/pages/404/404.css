@@ -1,0 +1,23 @@
+.error-container {
+    padding: 100px 20px;
+    min-height: 500px;
+}
+
+.error-code {
+    font-size: 120px;
+    font-weight: bold;
+    color: #dc3545;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.error-container h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.error-container .lead {
+    font-size: 18px;
+    color: #666;
+}

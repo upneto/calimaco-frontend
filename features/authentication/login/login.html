@@ -1,0 +1,22 @@
+<div class="login-container">
+    <h1>Login</h1>
+    
+    <div id="loginAlert"></div>
+    
+    <form id="loginForm" novalidate>
+        <div class="mb-3">
+            <label for="username" class="form-label">Usuário</label>
+            <input type="text" class="form-control" id="username" required minlength="3">
+            <div class="invalid-feedback">O usuário deve ter pelo menos 3 caracteres.</div>
+        </div>  
+        <div class="mb-3">
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="password" required minlength="4">
+            <div class="invalid-feedback">A senha deve ter pelo menos 4 caracteres.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+    
+    <p><a href="#forgot-password">Esqueceu a senha?</a></p>
+    <p><a href="#register">Cadastrar novo usuário</a></p>
+</div>
