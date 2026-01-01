@@ -82,11 +82,12 @@ function loadPage(page) {
             
             // Controlar visibilidade do menu e footer
             if (['login', 'register', 'forgot-password'].includes(page)) {
-                nav.style.display = 'none';
-                footer.style.display = 'none';
+                nav.classList.remove('visible');
+                footer.classList.remove('visible');
             } else {
-                nav.style.display = 'block';
-                footer.style.display = 'block';
+                nav.classList.add('visible');
+                footer.classList.add('visible');
+                updateActiveNavLink(page);
             }
             
             hideLoading();
@@ -121,15 +122,99 @@ loadPage(isLoggedIn ? 'home' : 'login');
 */
 
 /**
+ * Atualizar link ativo no menu
+ */
+function updateActiveNavLink(page) {
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href === `#${page}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+/**
  * Funcao de Logout
  */
 document.addEventListener('click', function(e) {
-    if (e.target.id === 'logoutLink') {
+    if (e.target.id === 'logoutLink' || e.target.closest('#logoutLink')) {
         e.preventDefault();
         localStorage.removeItem('loggedIn');
         localStorage.removeItem('username');
-        nav.style.display = 'none';
-        footer.style.display = 'none';
+        nav.classList.remove('visible');
+        footer.classList.remove('visible');
         window.location.hash = 'login';
     }
+});
+
+/**
+ * Dropdown Menu Toggle
+ */
+function initDropdowns() {
+    console.log('Initializing dropdowns...');
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    console.log('Found dropdowns:', dropdownToggles.length);
+    
+    dropdownToggles.forEach((toggle, index) => {
+        console.log('Setting up dropdown', index);
+        // Remove old listeners by cloning
+        const newToggle = toggle.cloneNode(true);
+        toggle.parentNode.replaceChild(newToggle, toggle);
+        
+        newToggle.addEventListener('click', function(e) {
+            console.log('Dropdown clicked!');
+            e.preventDefault();
+            e.stopPropagation();
+            const dropdown = this.parentElement;
+            
+            // Close other dropdowns
+            document.querySelectorAll('.nav-dropdown').forEach(dd => {
+                if (dd !== dropdown) {
+                    dd.classList.remove('active');
+                }
+            });
+            
+            // Toggle current dropdown
+            const isActive = dropdown.classList.contains('active');
+            dropdown.classList.toggle('active');
+            console.log('Dropdown toggled, now active:', !isActive);
+        });
+    });
+    
+    // Close dropdown when clicking on menu item
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            console.log('Dropdown item clicked');
+            document.querySelectorAll('.nav-dropdown').forEach(dd => {
+                dd.classList.remove('active');
+            });
+        });
+    });
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) {
+        const dropdowns = document.querySelectorAll('.nav-dropdown.active');
+        if (dropdowns.length > 0) {
+            console.log('Closing dropdowns from outside click');
+            dropdowns.forEach(dd => {
+                dd.classList.remove('active');
+            });
+        }
+    }
+});
+
+// Initialize dropdowns
+setTimeout(() => {
+    console.log('Running initial dropdown setup');
+    initDropdowns();
+}, 500);
+
+// Re-initialize after navigation
+window.addEventListener('hashchange', function() {
+    console.log('Hash changed, re-initializing dropdowns');
+    setTimeout(initDropdowns, 200);
 });

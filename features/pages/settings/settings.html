@@ -1,0 +1,114 @@
+<div class="settings-page">
+    <div class="page-header">
+        <h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+            </svg>
+            Parametrizações
+        </h1>
+        <p class="page-subtitle">Configure categorias, gêneros, editoras e outros parâmetros do sistema</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-container">
+        <button class="tab-btn active" data-tab="categories">Categorias</button>
+        <button class="tab-btn" data-tab="genres">Gêneros</button>
+        <button class="tab-btn" data-tab="publishers">Editoras</button>
+        <button class="tab-btn" data-tab="authors">Autores</button>
+        <button class="tab-btn" data-tab="collections">Coleções</button>
+    </div>
+
+    <!-- Tab Content: Categories -->
+    <div class="tab-content active" id="categories-tab">
+        <div class="content-header">
+            <h2>Categorias</h2>
+            <button class="btn-primary" onclick="openAddModal('category')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                Nova Categoria
+            </button>
+        </div>
+        <div class="items-grid" id="categories-list"></div>
+    </div>
+
+    <!-- Tab Content: Genres -->
+    <div class="tab-content" id="genres-tab">
+        <div class="content-header">
+            <h2>Gêneros Literários</h2>
+            <button class="btn-primary" onclick="openAddModal('genre')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                Novo Gênero
+            </button>
+        </div>
+        <div class="items-grid" id="genres-list"></div>
+    </div>
+
+    <!-- Tab Content: Publishers -->
+    <div class="tab-content" id="publishers-tab">
+        <div class="content-header">
+            <h2>Editoras</h2>
+            <button class="btn-primary" onclick="openAddModal('publisher')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                Nova Editora
+            </button>
+        </div>
+        <div class="items-grid" id="publishers-list"></div>
+    </div>
+
+    <!-- Tab Content: Authors -->
+    <div class="tab-content" id="authors-tab">
+        <div class="content-header">
+            <h2>Autores</h2>
+            <button class="btn-primary" onclick="openAddModal('author')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                Novo Autor
+            </button>
+        </div>
+        <div class="items-grid" id="authors-list"></div>
+    </div>
+
+    <!-- Tab Content: Collections -->
+    <div class="tab-content" id="collections-tab">
+        <div class="content-header">
+            <h2>Coleções/Séries</h2>
+            <button class="btn-primary" onclick="openAddModal('collection')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                Nova Coleção
+            </button>
+        </div>
+        <div class="items-grid" id="collections-list"></div>
+    </div>
+
+    <!-- Modal for Add/Edit -->
+    <div class="modal" id="itemModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Adicionar Item</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="itemForm">
+                <div class="form-group">
+                    <label for="itemName">Nome *</label>
+                    <input type="text" id="itemName" class="form-control" required>
+                </div>
+                <div class="form-group" id="descriptionGroup">
+                    <label for="itemDescription">Descrição</label>
+                    <textarea id="itemDescription" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
