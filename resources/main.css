@@ -211,6 +211,12 @@ body {
     flex-shrink: 0;
 }
 
+.dropdown-divider-item {
+    margin-top: 8px;
+    padding-top: 22px !important;
+    border-top: 1px solid #e2e8f0;
+}
+
 /* Responsive Navbar */
 @media (max-width: 768px) {
     .nav-container {

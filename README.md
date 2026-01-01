@@ -1,49 +1,86 @@
-# Frontend SPA Project
+# Calímaco - Sistema de Catalogação de Livros
 
-Este é um projeto de aplicação web de página única (SPA) desenvolvida com tecnologias puras: HTML, CSS e JavaScript. Utiliza Bootstrap para estilização e Nginx como servidor local.
+**Calímaco** é uma aplicação web moderna e intuitiva para catalogação e gerenciamento de bibliotecas pessoais. Desenvolvida especialmente para bibliófios, colecionadores e amantes de literatura, oferece uma solução completa para organização de livros e histórias em quadrinhos.
 
-## Tecnologias Utilizadas
+## 📚 Sobre o Projeto
 
-- **HTML**: Estrutura das páginas.
-- **CSS**: Estilização personalizada.
-- **JavaScript**: Lógica da aplicação, incluindo roteamento SPA.
-- **Bootstrap**: Framework CSS para componentes responsivos e utilitários.
-- **Nginx**: Servidor web para hospedar a aplicação localmente.
+O Calímaco permite que você:
+- 📖 **Catalogue sua coleção**: Registre livros e HQs com detalhes completos (autor, editora, ano, ISBN, etc.)
+- 🔍 **Pesquise facilmente**: Encontre rapidamente qualquer item com filtros inteligentes e busca avançada
+- 📊 **Visualize estatísticas**: Acompanhe sua coleção através de gráficos interativos
+- 📸 **Cadastro por foto**: Registre livros rapidamente tirando foto da capa (OCR em desenvolvimento)
+- 🏷️ **Organize por categorias**: Classifique por gênero, autor, série, status de leitura e tags personalizadas
+- ⚙️ **Parametrize o sistema**: Configure categorias, gêneros, editoras, autores e coleções
 
-## Estrutura do Projeto
+### Sobre o Nome
+
+O projeto homenageia **Calímaco de Cirene** (310-240 a.C.), célebre bibliotecário da Biblioteca de Alexandria que criou os *Pinakes*, o primeiro catálogo bibliográfico sistemático da história. Assim como Calímaco organizou o conhecimento humano da antiguidade, este sistema ajuda você a organizar sua biblioteca pessoal.
+
+## 🚀 Tecnologias Utilizadas
+
+- **HTML5/CSS3**: Interface moderna com design responsivo
+- **JavaScript (Vanilla)**: SPA com roteamento hash-based, sem frameworks pesados
+- **Bootstrap 5**: Componentes e utilitários responsivos
+- **Chart.js**: Gráficos interativos para visualização de dados
+- **localStorage**: Persistência de dados no navegador
+- **Nginx**: Servidor web local para desenvolvimento
+
+## 📁 Estrutura do Projeto
 
 ```
 /
-├── index.html                 # Página principal da aplicação
-├── start.bat                  # Script para iniciar o servidor Nginx
-├── stop.bat                   # Script para parar o servidor Nginx
+├── index.html                 # Página principal SPA
+├── start.bat                  # Script para iniciar servidor Nginx
+├── stop.bat                   # Script para parar servidor Nginx
 ├── resources/
-│   ├── main.css               # Estilos globais
-│   ├── main.js                # Lógica principal e roteamento SPA
-│   ├── bootstrap/             # Arquivos do Bootstrap
-│   │   ├── bootstrap.min.css
-│   │   └── bootstrap.bundle.min.js
-│   └── nginx/                 # Servidor Nginx
-│       └── nginx-1.25.3/
-│           ├── nginx.exe
-│           └── conf/
-│               └── nginx.conf # Configuração do Nginx
-└── features/                  # Funcionalidades/telas da aplicação
-    ├── home/
-    │   ├── home.html
-    │   ├── home.css
-    │   └── home.js
-    ├── about/
-    │   ├── about.html
-    │   ├── about.css
-    │   └── about.js
-    └── contact/
-        ├── contact.html
-        ├── contact.css
-        └── contact.js
+│   ├── main.css               # Estilos globais e tema
+│   ├── main.js                # Roteamento SPA e lógica principal
+│   └── bootstrap/             # Framework Bootstrap
+├── features/
+│   ├── authentication/        # Login, registro e recuperação de senha
+│   │   ├── login/
+│   │   ├── register/
+│   │   └── forgot-password/
+│   └── pages/
+│       ├── home/              # Dashboard com estatísticas e gráficos
+│       ├── books-list/        # Listagem, filtros e gerenciamento de livros
+│       ├── books-add/         # Formulário de cadastro/edição de livros
+│       ├── books-scan/        # Cadastro por foto (OCR)
+│       ├── settings/          # Parametrização (5 abas: categorias, gêneros, etc.)
+│       ├── about/             # Sobre o sistema e guia de uso
+│       └── contact/           # Formulário de contato
+└── server/
+    ├── nginx/                 # Servidor Nginx 1.25.3
+    └── docker/                # Configuração Docker (opcional)
 ```
 
-## Como Executar
+## 🎯 Funcionalidades Principais
+
+### Dashboard Interativo
+- Cards com resumo: total de livros, lidos, lendo e a ler
+- Gráficos Chart.js com 8 visualizações diferentes (barras, pizza, linha, rosca)
+- Análise por gênero, autor, editora, categoria e ano de publicação
+- Acesso rápido aos últimos livros cadastrados
+
+### Gestão de Livros
+- **Cadastro completo**: Informações básicas, detalhes físicos, classificação e observações
+- **Listagem em cards**: Visual moderno com capa, título, autor e editora
+- **Filtros avançados**: Por categoria, gênero e status de leitura
+- **Busca**: Pesquisa por título, autor ou editora
+- **Modal de detalhes**: Visualização completa com opções de editar/excluir
+- **Cadastro por foto**: Interface drag-drop para upload de imagens (OCR em desenvolvimento)
+
+### Sistema de Parametrização
+5 abas para gerenciar dados mestres:
+- Categorias (Livros, HQs, Mangás, Revistas)
+- Gêneros (Ficção, Romance, Suspense, etc.)
+- Editoras
+- Autores
+- Coleções (Harry Potter, Marvel, DC Comics)
+
+Cada aba possui CRUD completo com validações.
+
+## 💻 Como Executar
 
 ### Opção 1: Windows (Nginx Local)
 1. Execute `start.bat` (como administrador se necessário).
@@ -75,25 +112,66 @@ Este é um projeto de aplicação web de página única (SPA) desenvolvida com t
 
 Se o projeto for movido para um diretório diferente:
 
-1. Abra o arquivo `resources/nginx/nginx-1.25.3/conf/nginx.conf`.
-2. Localize a linha `root   c:/Workspace/frontend/blank;`.
-3. Substitua pelo novo caminho absoluto do diretório raiz do projeto (ex.: `root   c:/Novo/Caminho/Para/Projeto;`).
-4. Salve o arquivo.
-5. Execute `start.bat` novamente.
+1. Abra o arquivo `server/nginx/nginx-1.25.3/conf/nginx.conf`.
+2. Localize a linha com o caminho `root`.
+3. Substitua pelo novo caminho absoluto do diretório raiz do projeto.
+4. Salve o arquivo e execute `start.bat` novamente.
 
-**Nota**: O caminho deve usar barras `/` e ser absoluto. Se houver espaços no caminho, envolva em aspas duplas no arquivo de configuração.
+**Nota**: Use barras `/` e caminhos absolutos. Se houver espaços, envolva em aspas duplas.
 
-## Desenvolvimento
+## 🛠️ Desenvolvimento
 
-- Cada funcionalidade tem seus próprios arquivos HTML, CSS e JS em `features/`.
-- O Bootstrap é carregado globalmente, então pode ser usado em qualquer arquivo.
-- Para adicionar novas páginas, crie uma nova pasta em `features/` com os três arquivos e atualize a navegação em `index.html`.
-- As páginas de autenticação (login, register, forgot-password) não aparecem no menu principal.
-- Autenticação simulada com localStorage (substitua por backend real).
+### Estrutura de Cada Funcionalidade
+Cada página/funcionalidade possui três arquivos:
+- `*.html` - Estrutura da página
+- `*.css` - Estilos específicos
+- `*.js` - Lógica e interações
 
-## Requisitos
+### Adicionando Novas Páginas
+1. Crie uma nova pasta em `features/pages/` com os três arquivos
+2. Atualize o roteamento em `resources/main.js`
+3. Adicione link no menu em `index.html` (se necessário)
 
-- Windows (o Nginx é específico para Windows).
-- Permissões para executar executáveis (pode requerer execução como administrador).
+### Persistência de Dados
+O sistema utiliza **localStorage** para armazenar:
+- `calimaco_books` - Livros cadastrados
+- `calimaco_categories` - Categorias
+- `calimaco_genres` - Gêneros
+- `calimaco_publishers` - Editoras
+- `calimaco_authors` - Autores
+- `calimaco_collections` - Coleções
 
-Se houver problemas, verifique o console do navegador para erros ou logs do Nginx.
+**Importante**: Os dados ficam salvos no navegador. Para produção, implemente backend com banco de dados.
+
+## 🎨 Design
+
+- **Tema**: Gradiente roxo (#667eea → #764ba2)
+- **Estilo**: Modern glassmorphism com cards elevados
+- **Responsivo**: Mobile-first, otimizado para celular e desktop
+- **Animações**: Transições suaves e hover effects
+- **Ícones**: Bootstrap Icons (SVG inline)
+
+## 📝 Roadmap
+
+- [ ] Integração com backend (API REST)
+- [ ] Sistema de autenticação real (JWT)
+- [ ] Implementação completa do OCR para cadastro por foto
+- [ ] Controle de empréstimos
+- [ ] Lista de desejos
+- [ ] Exportação/importação de dados (CSV, JSON)
+- [ ] Sistema de avaliação e resenhas
+- [ ] PWA (Progressive Web App)
+- [ ] Modo escuro
+- [ ] Múltiplos idiomas
+
+## 📄 Licença
+
+Este projeto está sob licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👤 Autor
+
+Desenvolvido com 💜 por bibliófios, para bibliófios.
+
+---
+
+**Calímaco** - *Organizando bibliotecas desde a Antiguidade até hoje* 📚
